@@ -156,30 +156,7 @@
             align-items: center;
         }
 
-        .lang-btn {
-            background: transparent;
-            color: var(--text-muted);
-            border: 1px solid var(--border);
-            border-radius: 999px;
-            padding: 0.35rem 0.75rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s;
-        }
-
-        .lang-btn:hover {
-            color: var(--text);
-            border-color: var(--accent);
-        }
-
-        .lang-btn.active {
-            color: var(--primary);
-            background: var(--accent);
-            border-color: var(--accent);
-        }
-
-        .theme-btn {
+        .icon-btn {
             width: 34px;
             height: 34px;
             border-radius: 999px;
@@ -193,13 +170,13 @@
             transition: all 0.25s;
         }
 
-        .theme-btn:hover {
+        .icon-btn:hover {
             color: var(--text);
             border-color: var(--accent);
             transform: translateY(-1px);
         }
 
-        .theme-btn i {
+        .icon-btn i {
             font-size: 0.9rem;
         }
 
@@ -959,11 +936,12 @@
                 <li><a href="#contact" data-i18n="navContact">Contact</a></li>
             </ul>
             <div class="lang-switcher" aria-label="Language switcher">
-                <button id="theme-toggle" class="theme-btn" type="button" aria-label="Switch theme" title="Switch theme">
+                <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch theme" title="Switch theme">
                     <i class="fas fa-moon" aria-hidden="true"></i>
                 </button>
-                <button id="lang-en" class="lang-btn active" type="button">EN</button>
-                <button id="lang-zh" class="lang-btn" type="button">中文</button>
+                <button id="lang-toggle" class="icon-btn" type="button" aria-label="Switch language" title="Switch language">
+                    <i class="fas fa-globe" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </nav>
@@ -1432,6 +1410,9 @@
                 themeToggle: 'Theme',
                 themeLight: 'Light',
                 themeDark: 'Dark',
+                langToggle: 'Language',
+                langEnglish: 'English',
+                langChineseUi: 'Chinese',
                 navAbout: 'About',
                 navExperience: 'Experience',
                 navSkills: 'Skills',
@@ -1594,6 +1575,9 @@
                 themeToggle: '主题',
                 themeLight: '浅色',
                 themeDark: '深色',
+                langToggle: '语言',
+                langEnglish: '英语',
+                langChineseUi: '中文',
                 navAbout: '关于',
                 navExperience: '经历',
                 navSkills: '技能',
@@ -1758,6 +1742,7 @@
             key: el.getAttribute('data-i18n')
         }));
         const themeToggleBtn = document.getElementById('theme-toggle');
+        const langToggleBtn = document.getElementById('lang-toggle');
         let currentLanguage = null;
         let currentTheme = null;
 
@@ -1768,6 +1753,16 @@
             const title = dict.themeToggle + ': ' + modeLabel;
             themeToggleBtn.setAttribute('aria-label', title);
             themeToggleBtn.setAttribute('title', title);
+        }
+
+        function updateLanguageToggleLabel() {
+            const locale = currentLanguage || 'en';
+            const dict = translations[locale] || translations.en;
+            const nextLocale = locale === 'en' ? 'zh' : 'en';
+            const nextLabel = nextLocale === 'zh' ? dict.langChineseUi : dict.langEnglish;
+            const title = dict.langToggle + ': ' + nextLabel;
+            langToggleBtn.setAttribute('aria-label', title);
+            langToggleBtn.setAttribute('title', title);
         }
 
         function applyTheme(theme) {
@@ -1800,18 +1795,15 @@
                 }
             });
 
-            const enBtn = document.getElementById('lang-en');
-            const zhBtn = document.getElementById('lang-zh');
-            enBtn.classList.toggle('active', locale === 'en');
-            zhBtn.classList.toggle('active', locale === 'zh');
-
             localStorage.setItem('preferred-language', locale);
             currentLanguage = locale;
             updateThemeToggleLabel();
+            updateLanguageToggleLabel();
         }
 
-        document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
-        document.getElementById('lang-zh').addEventListener('click', () => setLanguage('zh'));
+        langToggleBtn.addEventListener('click', () => {
+            setLanguage(currentLanguage === 'zh' ? 'en' : 'zh');
+        });
         themeToggleBtn.addEventListener('click', () => {
             applyTheme(currentTheme === 'light' ? 'dark' : 'light');
         });
