@@ -694,6 +694,22 @@
             font-size: 0.9rem;
         }
 
+        .footer-credit {
+            margin-top: 0.7rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-credit a {
+            color: var(--accent-light);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer-credit a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
         /* Scroll animations */
         .fade-in {
             opacity: 0;
@@ -1230,6 +1246,11 @@
     <footer>
         <p data-i18n="footerRights">© 2026 Abdul Rehman Khan. All rights reserved.</p>
         <p style="margin-top: 0.5rem; font-size: 0.8rem;" data-i18n="footerTagline">Portfolio designed based on professional experience in PV–ESS–EV systems and distributed energy solutions.</p>
+        <p class="footer-credit">
+            <span data-i18n="footerBuiltWithBefore">Built with love ❤️ by </span>
+            <a href="https://www.ethioweb.net/" target="_blank" rel="noopener noreferrer">Ethioweb</a>
+            <span data-i18n="footerBuiltWithAfter"></span>
+        </p>
     </footer>
 
     <script>
@@ -1379,7 +1400,9 @@
                 cert4: 'Optimizing Human Performance on Your Team as a Manager',
                 cert5: 'Creating a Positive and Healthy Work Environment',
                 footerRights: '© 2026 Abdul Rehman Khan. All rights reserved.',
-                footerTagline: 'Portfolio designed based on professional experience in PV-ESS-EV systems and distributed energy solutions.'
+                footerTagline: 'Portfolio designed based on professional experience in PV-ESS-EV systems and distributed energy solutions.',
+                footerBuiltWithBefore: 'Built with love ❤️ by ',
+                footerBuiltWithAfter: ''
             },
             zh: {
                 pageTitle: 'Abdul Rehman Khan - 个人作品集',
@@ -1526,7 +1549,9 @@
                 cert4: '作为管理者优化团队人效',
                 cert5: '打造积极健康的工作环境',
                 footerRights: '© 2026 Abdul Rehman Khan. 保留所有权利。',
-                footerTagline: '本作品集基于在光伏、储能、电动车系统及分布式能源解决方案方面的专业经验设计。'
+                footerTagline: '本作品集基于在光伏、储能、电动车系统及分布式能源解决方案方面的专业经验设计。',
+                footerBuiltWithBefore: '由 ',
+                footerBuiltWithAfter: ' 用爱 ❤️ 打造'
             }
         };
 
