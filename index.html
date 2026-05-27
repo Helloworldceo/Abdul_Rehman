@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Rehman Khan — Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #f59e0b;
+            --accent-light: #fbbf24;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --card: #1e293b;
+            --success: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(30, 41, 59, 0.5) 0%, transparent 70%);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .lang-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .lang-btn:hover {
+            color: var(--text);
+            border-color: var(--accent);
+        }
+
+        .lang-btn.active {
+            color: var(--primary);
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.25rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text .summary {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--success));
+        }
+
+        .profile-avatar {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, var(--accent), var(--success));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid rgba(245, 158, 11, 0.55);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .profile-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 28%;
+        }
+
+        .profile-initials {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-card .role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .section-line {
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), var(--success));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 0 3px var(--accent);
+        }
+
+        .timeline-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .timeline-card:hover {
+            border-color: var(--accent);
+            transform: translateX(5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .timeline-company {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .timeline-meta {
+            display: flex;
+            gap: 1rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .timeline-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .timeline-desc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-desc li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent-light);
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        /* Languages */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .lang-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .lang-card:hover {
+            border-color: var(--accent);
+        }
+
+        .lang-icon {
+            font-size: 1.5rem;
+        }
+
+        .lang-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .lang-level {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .cert-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .cert-card:hover {
+            border-color: var(--success);
+            transform: translateX(5px);
+        }
+
+        .cert-icon {
+            color: var(--success);
+            font-size: 1.25rem;
+        }
+
+        .cert-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Education */
+        .edu-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            max-width: 600px;
+            margin: 0 auto;
+            transition: all 0.3s;
+        }
+
+        .edu-card:hover {
+            border-color: var(--accent);
+        }
+
+        .edu-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .edu-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-info .degree {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .edu-info .year {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            color: var(--accent);
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .contact-info h4 {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-info p {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .profile-card {
+                margin: 0 auto;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .lang-switcher {
+                margin-left: auto;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .profile-avatar {
+                width: 140px;
+                height: 140px;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .timeline {
+                padding-left: 1rem;
+            }
+
+            .timeline-item {
+                padding-left: 1rem;
+            }
+
+            .timeline-item::before {
+                left: -1rem;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">ARK</div>
+            <ul class="nav-links">
+                <li><a href="#about" data-i18n="navAbout">About</a></li>
+                <li><a href="#experience" data-i18n="navExperience">Experience</a></li>
+                <li><a href="#skills" data-i18n="navSkills">Skills</a></li>
+                <li><a href="#education" data-i18n="navEducation">Education</a></li>
+                <li><a href="#contact" data-i18n="navContact">Contact</a></li>
+            </ul>
+            <div class="lang-switcher" aria-label="Language switcher">
+                <button id="lang-en" class="lang-btn active" type="button">EN</button>
+                <button id="lang-zh" class="lang-btn" type="button">中文</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="about">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Abdul Rehman Khan</h1>
+                <p class="subtitle" data-i18n="heroSubtitle">International Microgrid Solution Manager</p>
+                <p class="summary" data-i18n="heroSummary">Experienced professional spanning PV–ESS–EV systems across overseas markets. I lead solution design and technical-commercial coordination for distributed energy projects, supporting industrial clients, developers, and public-sector stakeholders in regions facing grid instability, rapid electrification, and renewable integration challenges.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> <span data-i18n="btnContact">Get In Touch</span>
+                    </a>
+                    <a href="#experience" class="btn btn-secondary">
+                        <i class="fas fa-briefcase"></i> <span data-i18n="btnExperience">View Experience</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <img
+                            class="profile-photo"
+                            src="Hero.jpg"
+                            alt="Abdul Rehman Khan profile photo"
+                            onload="this.nextElementSibling.style.display='none'"
+                            onerror="this.remove()"
+                        >
+                        <span class="profile-initials">AR</span>
+                    </div>
+                    <h3>Abdul Rehman Khan</h3>
+                    <p class="role" data-i18n="profileRole">PV · ESS · EV Systems</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+                        <i class="fas fa-map-marker-alt" style="color: var(--accent);"></i> <span data-i18n="profileLocation">China</span>
+                    </p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="stat-value">6+</div>
+                            <div class="stat-label" data-i18n="statYears">Years Exp.</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">6</div>
+                            <div class="stat-label" data-i18n="statCompanies">Companies</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">5</div>
+                            <div class="stat-label" data-i18n="statLanguages">Languages</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">200+</div>
+                            <div class="stat-label" data-i18n="statCertificates">Certificates</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="section-header fade-in">
+            <h2 data-i18n="expTitle">Professional Experience</h2>
+            <div class="section-line"></div>
+            <p data-i18n="expSubtitle">A track record of delivering energy solutions across Asia, Africa, EU & Middle East</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title" data-i18n="exp1Title">International Microgrid Solution Manager</div>
+                            <div class="timeline-company">StarCharge</div>
+                        </div>
+                    </div>
+                    <div class="timeline-meta">
+                        <span><i class="fas fa-calendar"></i> <span data-i18n="exp1Date">Sep 2025 – Present</span></span>
+                        <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="exp1Location">China</span></span>
+                        <span><i class="fas fa-clock"></i> <span data-i18n="exp1Duration">9 months</span></span>
+                    </div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li data-i18n="exp1Bullet1">Lead international microgrid and distributed energy solution development for commercial, industrial, and emerging-market applications</li>
+                            <li data-i18n="exp1Bullet2">Own end-to-end solution design including load assessment, system architecture, equipment selection (PCS, BESS, EMS), and financial feasibility analysis</li>
+                            <li data-i18n="exp1Bullet3">Drive project execution across Asia, Africa, the EU, and the Middle East by coordinating engineering, procurement, and local partners</li>
+                            <li data-i18n="exp1Bullet4">Support business development with tailored microgrid designs addressing grid instability, peak shaving, and renewable penetration</li>
+                            <li data-i18n="exp1Bullet5">Compile complex energy system requirements into clear, actionable proposals for non-technical stakeholders</li>
+                            <li data-i18n="exp1Bullet6">Contribute to global expansion strategy by identifying market opportunities, regulatory constraints, and localization requirements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title" data-i18n="exp2Title">Product Manager</div>
+                            <div class="timeline-company">Cospowers Technology Company Limited</div>
+                        </div>
+                    </div>
+                    <div class="timeline-meta">
+                        <span><i class="fas fa-calendar"></i> <span data-i18n="exp2Date">Apr 2024 – Sep 2025</span></span>
+                        <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="exp2Location">Shenzhen, China</span></span>
+                        <span><i class="fas fa-clock"></i> <span data-i18n="exp2Duration">1 year 6 months</span></span>
+                    </div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li data-i18n="exp2Bullet1">Managed product lifecycle for innovative battery energy storage systems (BESS) at a leading sustainable energy provider</li>
+                            <li data-i18n="exp2Bullet2">Collaborated cross-functionally with engineering, sales, and marketing to align product direction with customer needs</li>
+                            <li data-i18n="exp2Bullet3">Specialized in Power Conversion Systems (PCS), Battery Management Systems (BMS), BESS certifications, and communication protocols</li>
+                            <li data-i18n="exp2Bullet4">Delivered tailored solutions through technical proposals for esteemed clients</li>
+                            <li data-i18n="exp2Bullet5">Bridged communication between technical stakeholders to ensure clear understanding of project requirements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title" data-i18n="exp3Title">Pre & Post Sales Engineer</div>
+                            <div class="timeline-company">Shenzhen CEGN Co., Ltd.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-meta">
+                        <span><i class="fas fa-calendar"></i> <span data-i18n="exp3Date">Aug 2023 – Apr 2024</span></span>
+                        <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="exp3Location">Shenzhen, China</span></span>
+                        <span><i class="fas fa-clock"></i> <span data-i18n="exp3Duration">9 months</span></span>
+                    </div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li data-i18n="exp3Bullet1">Provided technical guidance to sales representatives and customers for NEV charging, energy storage, and PV+storage+charging solutions</li>
+                            <li data-i18n="exp3Bullet2">Authored technical documentation and defect manuals to facilitate product understanding and troubleshooting</li>
+                            <li data-i18n="exp3Bullet3">Developed training programs for dealers to effectively implement and support CEGN solutions</li>
+                            <li data-i18n="exp3Bullet4">Collected customer feedback to identify product improvement opportunities and enhance user experience</li>
+                            <li data-i18n="exp3Bullet5">Supported business development by providing technical insights and supporting sales initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title" data-i18n="exp4Title">Technical Support Engineer</div>
+                            <div class="timeline-company">AUTEL Automotive Intelligence USA</div>
+                        </div>
+                    </div>
+                    <div class="timeline-meta">
+                        <span><i class="fas fa-calendar"></i> <span data-i18n="exp4Date">Aug 2021 – Jul 2023</span></span>
+                        <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="exp4Location">Shenzhen, China</span></span>
+                        <span><i class="fas fa-clock"></i> <span data-i18n="exp4Duration">2 years</span></span>
+                    </div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li data-i18n="exp4Bullet1">Provided technical support to international customers for diagnostic scan tools, TPMS, ADAS calibration, and OBDII products</li>
+                            <li data-i18n="exp4Bullet2">Resolved complex product issues and enhanced customer satisfaction across global markets</li>
+                            <li data-i18n="exp4Bullet3">Authored technical documentation and defect manuals for global product understanding</li>
+                            <li data-i18n="exp4Bullet4">Trained partners and customers to effectively install, implement, and support Autel products</li>
+                            <li data-i18n="exp4Bullet5">Collaborated with sales teams to provide technical expertise, product demonstrations, and customer training</li>
+                            <li data-i18n="exp4Bullet6">Gathered customer feedback to improve product performance and user experience</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title" data-i18n="exp5Title">Technical Support Engineer</div>
+                            <div class="timeline-company">COOYEE</div>
+                        </div>
+                    </div>
+                    <div class="timeline-meta">
+                        <span><i class="fas fa-calendar"></i> <span data-i18n="exp5Date">Dec 2020 – Aug 2021</span></span>
+                        <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="exp5Location">Shenzhen, China</span></span>
+                        <span><i class="fas fa-clock"></i> <span data-i18n="exp5Duration">9 months</span></span>
+                    </div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li data-i18n="exp5Bullet1">Led expansion of Simply Reliable B2B platform for Smart Collection of Bone Conduction Series products</li>
+                            <li data-i18n="exp5Bullet2">Ensured consumer inquiries and concerns were promptly and courteously addressed</li>
+                            <li data-i18n="exp5Bullet3">Provided support for data monitoring tools and assisted customers with technological issues</li>
+                            <li data-i18n="exp5Bullet4">Conducted product demonstrations and educated customers on effective product usage</li>
+                            <li data-i18n="exp5Bullet5">Served as liaison between product development and technical support for outstanding communication</li>
+                            <li data-i18n="exp5Bullet6">Developed training materials and technical reports to facilitate customer onboarding</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-title" data-i18n="exp6Title">Technical Presales Manager</div>
+                            <div class="timeline-company">BEIJING LEMA TECHNOLOGY</div>
+                        </div>
+                    </div>
+                    <div class="timeline-meta">
+                        <span><i class="fas fa-calendar"></i> <span data-i18n="exp6Date">Nov 2019 – Dec 2020</span></span>
+                        <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="exp6Location">Beijing, China</span></span>
+                        <span><i class="fas fa-clock"></i> <span data-i18n="exp6Duration">1 year 2 months</span></span>
+                    </div>
+                    <div class="timeline-desc">
+                        <ul>
+                            <li data-i18n="exp6Bullet1">Conducted product demonstrations and provided technical training to clients on featured products</li>
+                            <li data-i18n="exp6Bullet2">Coordinated product development and technical support to ensure quality and customer satisfaction</li>
+                            <li data-i18n="exp6Bullet3">Composed foreign language instruction manuals and technical documentation</li>
+                            <li data-i18n="exp6Bullet4">Tracked product usage to improve customer product utilization and satisfaction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-header fade-in">
+            <h2 data-i18n="skillsTitle">Skills & Expertise</h2>
+            <div class="section-line"></div>
+            <p data-i18n="skillsSubtitle">Technical and professional competencies developed across energy and technology sectors</p>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <div class="skill-icon"><i class="fas fa-solar-panel"></i></div>
+                <h3 data-i18n="skillTitle1">Energy Systems</h3>
+                <div class="skill-tags">
+                    <span class="tag" data-i18n="skill1Tag1">PV Systems</span>
+                    <span class="tag" data-i18n="skill1Tag2">BESS</span>
+                    <span class="tag" data-i18n="skill1Tag3">EV Charging</span>
+                    <span class="tag" data-i18n="skill1Tag4">Microgrids</span>
+                    <span class="tag" data-i18n="skill1Tag5">PCS</span>
+                    <span class="tag" data-i18n="skill1Tag6">EMS</span>
+                    <span class="tag" data-i18n="skill1Tag7">BMS</span>
+                </div>
+            </div>
+
+            <div class="skill-card fade-in">
+                <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                <h3 data-i18n="skillTitle2">Business & Sales</h3>
+                <div class="skill-tags">
+                    <span class="tag" data-i18n="skill2Tag1">Lead Generation</span>
+                    <span class="tag" data-i18n="skill2Tag2">Technical Presales</span>
+                    <span class="tag" data-i18n="skill2Tag3">Solution Design</span>
+                    <span class="tag" data-i18n="skill2Tag4">Financial Analysis</span>
+                    <span class="tag" data-i18n="skill2Tag5">CAPEX/OPEX</span>
+                    <span class="tag" data-i18n="skill2Tag6">IRR Analysis</span>
+                </div>
+            </div>
+
+            <div class="skill-card fade-in">
+                <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3 data-i18n="skillTitle3">Tools & Platforms</h3>
+                <div class="skill-tags">
+                    <span class="tag" data-i18n="skill3Tag1">Salesforce</span>
+                    <span class="tag" data-i18n="skill3Tag2">Jira Service Desk</span>
+                    <span class="tag" data-i18n="skill3Tag3">Technical Documentation</span>
+                    <span class="tag" data-i18n="skill3Tag4">Product Management</span>
+                </div>
+            </div>
+
+            <div class="skill-card fade-in">
+                <div class="skill-icon"><i class="fas fa-globe"></i></div>
+                <h3 data-i18n="skillTitle4">Market Expertise</h3>
+                <div class="skill-tags">
+                    <span class="tag" data-i18n="skill4Tag1">Asia</span>
+                    <span class="tag" data-i18n="skill4Tag2">Africa</span>
+                    <span class="tag" data-i18n="skill4Tag3">Middle East</span>
+                    <span class="tag" data-i18n="skill4Tag4">EU</span>
+                    <span class="tag" data-i18n="skill4Tag5">Emerging Markets</span>
+                    <span class="tag" data-i18n="skill4Tag6">Grid Instability Solutions</span>
+                </div>
+            </div>
+
+            <div class="skill-card fade-in">
+                <div class="skill-icon"><i class="fas fa-users"></i></div>
+                <h3 data-i18n="skillTitle5">Soft Skills</h3>
+                <div class="skill-tags">
+                    <span class="tag" data-i18n="skill5Tag1">Cross-functional Coordination</span>
+                    <span class="tag" data-i18n="skill5Tag2">Stakeholder Management</span>
+                    <span class="tag" data-i18n="skill5Tag3">Customer Training</span>
+                    <span class="tag" data-i18n="skill5Tag4">Technical Communication</span>
+                    <span class="tag" data-i18n="skill5Tag5">Team Productivity</span>
+                </div>
+            </div>
+
+            <div class="skill-card fade-in">
+                <div class="skill-icon"><i class="fas fa-car"></i></div>
+                <h3 data-i18n="skillTitle6">Automotive Tech</h3>
+                <div class="skill-tags">
+                    <span class="tag" data-i18n="skill6Tag1">Diagnostic Tools</span>
+                    <span class="tag" data-i18n="skill6Tag2">TPMS</span>
+                    <span class="tag" data-i18n="skill6Tag3">ADAS Calibration</span>
+                    <span class="tag" data-i18n="skill6Tag4">OBDII</span>
+                    <span class="tag" data-i18n="skill6Tag5">Technical Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="languages">
+        <div class="section-header fade-in">
+            <h2 data-i18n="languagesTitle">Languages</h2>
+            <div class="section-line"></div>
+            <p data-i18n="languagesSubtitle">Multilingual communication capabilities for global markets</p>
+        </div>
+
+        <div class="languages-grid">
+            <div class="lang-card fade-in">
+                <div class="lang-icon">🇵🇰</div>
+                <div class="lang-info">
+                    <h4 data-i18n="langUrdu">Urdu</h4>
+                    <p class="lang-level" data-i18n="langLevelNative">Native or Bilingual</p>
+                </div>
+            </div>
+            <div class="lang-card fade-in">
+                <div class="lang-icon">🇮🇳</div>
+                <div class="lang-info">
+                    <h4 data-i18n="langHindi">Hindi</h4>
+                    <p class="lang-level" data-i18n="langLevelNative">Native or Bilingual</p>
+                </div>
+            </div>
+            <div class="lang-card fade-in">
+                <div class="lang-icon">🇬🇧</div>
+                <div class="lang-info">
+                    <h4 data-i18n="langEnglish">English</h4>
+                    <p class="lang-level" data-i18n="langLevelProfessional">Professional Working Proficiency</p>
+                </div>
+            </div>
+            <div class="lang-card fade-in">
+                <div class="lang-icon">🇨🇳</div>
+                <div class="lang-info">
+                    <h4 data-i18n="langChinese">Chinese</h4>
+                    <p class="lang-level" data-i18n="langLevelElementary">Elementary</p>
+                </div>
+            </div>
+            <div class="lang-card fade-in">
+                <div class="lang-icon">🇵🇰</div>
+                <div class="lang-info">
+                    <h4 data-i18n="langPunjabi">Punjabi</h4>
+                    <p class="lang-level" data-i18n="langLevelNative">Native or Bilingual</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="section-header fade-in">
+            <h2 data-i18n="certTitle">Certifications</h2>
+            <div class="section-line"></div>
+            <p data-i18n="certSubtitle">Professional development and management training</p>
+        </div>
+
+        <div class="cert-grid">
+            <div class="cert-card fade-in">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <div class="cert-text" data-i18n="cert1">Boosting Your Team's Productivity</div>
+            </div>
+            <div class="cert-card fade-in">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <div class="cert-text" data-i18n="cert2">Communication Skills for Modern Management</div>
+            </div>
+            <div class="cert-card fade-in">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <div class="cert-text" data-i18n="cert3">Creating Positive Conversations with Challenging Customers</div>
+            </div>
+            <div class="cert-card fade-in">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <div class="cert-text" data-i18n="cert4">Optimizing Human Performance on Your Team as a Manager</div>
+            </div>
+            <div class="cert-card fade-in">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <div class="cert-text" data-i18n="cert5">Creating a Positive and Healthy Work Environment</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="section-header fade-in">
+            <h2 data-i18n="educationTitle">Education</h2>
+            <div class="section-line"></div>
+            <p data-i18n="educationSubtitle">Academic foundation in engineering and technology</p>
+        </div>
+
+        <div class="edu-card fade-in">
+            <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div class="edu-info">
+                <h3 data-i18n="educationSchool">Beijing Institute of Technology</h3>
+                <p class="degree" data-i18n="educationDegree">Master of Mechanical Engineering</p>
+                <p class="year"><i class="fas fa-calendar" style="margin-right: 0.5rem;"></i>2017 – 2019</p>
+                <p style="color: var(--text-muted); margin-top: 0.75rem; font-size: 0.9rem;" data-i18n="educationFocus">Focused on mechanical systems and engineering principles with applications in energy and technology sectors.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-header fade-in">
+            <h2 data-i18n="contactTitle">Get In Touch</h2>
+            <div class="section-line"></div>
+            <p data-i18n="contactSubtitle">Let's discuss how I can support your energy projects</p>
+        </div>
+
+        <div class="contact-grid">
+            <a href="mailto:abdul4238@gmail.com" class="contact-card fade-in">
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <div class="contact-info">
+                    <h4 data-i18n="contactEmail">Email</h4>
+                    <p>abdul4238@gmail.com</p>
+                </div>
+            </a>
+            <a href="tel:+8613041057233" class="contact-card fade-in">
+                <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                <div class="contact-info">
+                    <h4 data-i18n="contactPhone">Phone</h4>
+                    <p>+86 130 4105 7233</p>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/abdulrehman4238" target="_blank" class="contact-card fade-in">
+                <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+                <div class="contact-info">
+                    <h4 data-i18n="contactLinkedIn">LinkedIn</h4>
+                    <p>linkedin.com/in/abdulrehman4238</p>
+                </div>
+            </a>
+            <div class="contact-card fade-in">
+                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="contact-info">
+                    <h4 data-i18n="contactLocation">Location</h4>
+                    <p data-i18n="profileLocation">China</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p data-i18n="footerRights">© 2026 Abdul Rehman Khan. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;" data-i18n="footerTagline">Portfolio designed based on professional experience in PV–ESS–EV systems and distributed energy solutions.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            en: {
+                pageTitle: 'Abdul Rehman Khan — Portfolio',
+                navAbout: 'About',
+                navExperience: 'Experience',
+                navSkills: 'Skills',
+                navEducation: 'Education',
+                navContact: 'Contact',
+                heroSubtitle: 'International Microgrid Solution Manager',
+                heroSummary: 'Experienced professional spanning PV-ESS-EV systems across overseas markets. I lead solution design and technical-commercial coordination for distributed energy projects, supporting industrial clients, developers, and public-sector stakeholders in regions facing grid instability, rapid electrification, and renewable integration challenges.',
+                btnContact: 'Get In Touch',
+                btnExperience: 'View Experience',
+                profileRole: 'PV · ESS · EV Systems',
+                profileLocation: 'China',
+                statYears: 'Years Exp.',
+                statCompanies: 'Companies',
+                statLanguages: 'Languages',
+                statCertificates: 'Certificates',
+                expTitle: 'Professional Experience',
+                expSubtitle: 'A track record of delivering energy solutions across Asia, Africa, EU & Middle East',
+                skillsTitle: 'Skills & Expertise',
+                skillsSubtitle: 'Technical and professional competencies developed across energy and technology sectors',
+                languagesTitle: 'Languages',
+                languagesSubtitle: 'Multilingual communication capabilities for global markets',
+                certTitle: 'Certifications',
+                certSubtitle: 'Professional development and management training',
+                educationTitle: 'Education',
+                educationSubtitle: 'Academic foundation in engineering and technology',
+                educationSchool: 'Beijing Institute of Technology',
+                educationDegree: 'Master of Mechanical Engineering',
+                educationFocus: 'Focused on mechanical systems and engineering principles with applications in energy and technology sectors.',
+                contactTitle: 'Get In Touch',
+                contactSubtitle: "Let's discuss how I can support your energy projects",
+                contactEmail: 'Email',
+                contactPhone: 'Phone',
+                contactLinkedIn: 'LinkedIn',
+                contactLocation: 'Location',
+                exp1Title: 'International Microgrid Solution Manager',
+                exp1Date: 'Sep 2025 – Present',
+                exp1Location: 'China',
+                exp1Duration: '9 months',
+                exp1Bullet1: 'Lead international microgrid and distributed energy solution development for commercial, industrial, and emerging-market applications',
+                exp1Bullet2: 'Own end-to-end solution design including load assessment, system architecture, equipment selection (PCS, BESS, EMS), and financial feasibility analysis',
+                exp1Bullet3: 'Drive project execution across Asia, Africa, the EU, and the Middle East by coordinating engineering, procurement, and local partners',
+                exp1Bullet4: 'Support business development with tailored microgrid designs addressing grid instability, peak shaving, and renewable penetration',
+                exp1Bullet5: 'Compile complex energy system requirements into clear, actionable proposals for non-technical stakeholders',
+                exp1Bullet6: 'Contribute to global expansion strategy by identifying market opportunities, regulatory constraints, and localization requirements',
+                exp2Title: 'Product Manager',
+                exp2Date: 'Apr 2024 – Sep 2025',
+                exp2Location: 'Shenzhen, China',
+                exp2Duration: '1 year 6 months',
+                exp2Bullet1: 'Managed product lifecycle for innovative battery energy storage systems (BESS) at a leading sustainable energy provider',
+                exp2Bullet2: 'Collaborated cross-functionally with engineering, sales, and marketing to align product direction with customer needs',
+                exp2Bullet3: 'Specialized in Power Conversion Systems (PCS), Battery Management Systems (BMS), BESS certifications, and communication protocols',
+                exp2Bullet4: 'Delivered tailored solutions through technical proposals for esteemed clients',
+                exp2Bullet5: 'Bridged communication between technical stakeholders to ensure clear understanding of project requirements',
+                exp3Title: 'Pre & Post Sales Engineer',
+                exp3Date: 'Aug 2023 – Apr 2024',
+                exp3Location: 'Shenzhen, China',
+                exp3Duration: '9 months',
+                exp3Bullet1: 'Provided technical guidance to sales representatives and customers for NEV charging, energy storage, and PV+storage+charging solutions',
+                exp3Bullet2: 'Authored technical documentation and defect manuals to facilitate product understanding and troubleshooting',
+                exp3Bullet3: 'Developed training programs for dealers to effectively implement and support CEGN solutions',
+                exp3Bullet4: 'Collected customer feedback to identify product improvement opportunities and enhance user experience',
+                exp3Bullet5: 'Supported business development by providing technical insights and supporting sales initiatives',
+                exp4Title: 'Technical Support Engineer',
+                exp4Date: 'Aug 2021 – Jul 2023',
+                exp4Location: 'Shenzhen, China',
+                exp4Duration: '2 years',
+                exp4Bullet1: 'Provided technical support to international customers for diagnostic scan tools, TPMS, ADAS calibration, and OBDII products',
+                exp4Bullet2: 'Resolved complex product issues and enhanced customer satisfaction across global markets',
+                exp4Bullet3: 'Authored technical documentation and defect manuals for global product understanding',
+                exp4Bullet4: 'Trained partners and customers to effectively install, implement, and support Autel products',
+                exp4Bullet5: 'Collaborated with sales teams to provide technical expertise, product demonstrations, and customer training',
+                exp4Bullet6: 'Gathered customer feedback to improve product performance and user experience',
+                exp5Title: 'Technical Support Engineer',
+                exp5Date: 'Dec 2020 – Aug 2021',
+                exp5Location: 'Shenzhen, China',
+                exp5Duration: '9 months',
+                exp5Bullet1: 'Led expansion of Simply Reliable B2B platform for Smart Collection of Bone Conduction Series products',
+                exp5Bullet2: 'Ensured consumer inquiries and concerns were promptly and courteously addressed',
+                exp5Bullet3: 'Provided support for data monitoring tools and assisted customers with technological issues',
+                exp5Bullet4: 'Conducted product demonstrations and educated customers on effective product usage',
+                exp5Bullet5: 'Served as liaison between product development and technical support for outstanding communication',
+                exp5Bullet6: 'Developed training materials and technical reports to facilitate customer onboarding',
+                exp6Title: 'Technical Presales Manager',
+                exp6Date: 'Nov 2019 – Dec 2020',
+                exp6Location: 'Beijing, China',
+                exp6Duration: '1 year 2 months',
+                exp6Bullet1: 'Conducted product demonstrations and provided technical training to clients on featured products',
+                exp6Bullet2: 'Coordinated product development and technical support to ensure quality and customer satisfaction',
+                exp6Bullet3: 'Composed foreign language instruction manuals and technical documentation',
+                exp6Bullet4: 'Tracked product usage to improve customer product utilization and satisfaction',
+                skillTitle1: 'Energy Systems',
+                skill1Tag1: 'PV Systems',
+                skill1Tag2: 'BESS',
+                skill1Tag3: 'EV Charging',
+                skill1Tag4: 'Microgrids',
+                skill1Tag5: 'PCS',
+                skill1Tag6: 'EMS',
+                skill1Tag7: 'BMS',
+                skillTitle2: 'Business & Sales',
+                skill2Tag1: 'Lead Generation',
+                skill2Tag2: 'Technical Presales',
+                skill2Tag3: 'Solution Design',
+                skill2Tag4: 'Financial Analysis',
+                skill2Tag5: 'CAPEX/OPEX',
+                skill2Tag6: 'IRR Analysis',
+                skillTitle3: 'Tools & Platforms',
+                skill3Tag1: 'Salesforce',
+                skill3Tag2: 'Jira Service Desk',
+                skill3Tag3: 'Technical Documentation',
+                skill3Tag4: 'Product Management',
+                skillTitle4: 'Market Expertise',
+                skill4Tag1: 'Asia',
+                skill4Tag2: 'Africa',
+                skill4Tag3: 'Middle East',
+                skill4Tag4: 'EU',
+                skill4Tag5: 'Emerging Markets',
+                skill4Tag6: 'Grid Instability Solutions',
+                skillTitle5: 'Soft Skills',
+                skill5Tag1: 'Cross-functional Coordination',
+                skill5Tag2: 'Stakeholder Management',
+                skill5Tag3: 'Customer Training',
+                skill5Tag4: 'Technical Communication',
+                skill5Tag5: 'Team Productivity',
+                skillTitle6: 'Automotive Tech',
+                skill6Tag1: 'Diagnostic Tools',
+                skill6Tag2: 'TPMS',
+                skill6Tag3: 'ADAS Calibration',
+                skill6Tag4: 'OBDII',
+                skill6Tag5: 'Technical Support',
+                langUrdu: 'Urdu',
+                langHindi: 'Hindi',
+                langEnglish: 'English',
+                langChinese: 'Chinese',
+                langPunjabi: 'Punjabi',
+                langLevelNative: 'Native or Bilingual',
+                langLevelProfessional: 'Professional Working Proficiency',
+                langLevelElementary: 'Elementary',
+                cert1: "Boosting Your Team's Productivity",
+                cert2: 'Communication Skills for Modern Management',
+                cert3: 'Creating Positive Conversations with Challenging Customers',
+                cert4: 'Optimizing Human Performance on Your Team as a Manager',
+                cert5: 'Creating a Positive and Healthy Work Environment',
+                footerRights: '© 2026 Abdul Rehman Khan. All rights reserved.',
+                footerTagline: 'Portfolio designed based on professional experience in PV-ESS-EV systems and distributed energy solutions.'
+            },
+            zh: {
+                pageTitle: 'Abdul Rehman Khan - 个人作品集',
+                navAbout: '关于',
+                navExperience: '经历',
+                navSkills: '技能',
+                navEducation: '教育',
+                navContact: '联系',
+                heroSubtitle: '国际微电网解决方案经理',
+                heroSummary: '在海外市场具备丰富的光伏、储能与电动车系统经验。专注于分布式能源项目的方案设计与技术商务协同，为工业客户、开发商及公共部门提供支持，应对电网不稳定、电气化加速和可再生能源并网等挑战。',
+                btnContact: '联系我',
+                btnExperience: '查看经历',
+                profileRole: '光伏 · 储能 · 电动车系统',
+                profileLocation: '中国',
+                statYears: '年经验',
+                statCompanies: '任职公司',
+                statLanguages: '语言',
+                statCertificates: '证书',
+                expTitle: '职业经历',
+                expSubtitle: '在亚洲、非洲、欧盟与中东交付能源解决方案的实践记录',
+                skillsTitle: '技能与专长',
+                skillsSubtitle: '在能源与科技领域沉淀的技术与职业能力',
+                languagesTitle: '语言能力',
+                languagesSubtitle: '面向全球市场的多语言沟通能力',
+                certTitle: '证书',
+                certSubtitle: '专业成长与管理培训成果',
+                educationTitle: '教育背景',
+                educationSubtitle: '工程与技术方向的学术基础',
+                educationSchool: '北京理工大学',
+                educationDegree: '机械工程硕士',
+                educationFocus: '研究方向聚焦机械系统与工程原理，并应用于能源与科技领域。',
+                contactTitle: '联系我',
+                contactSubtitle: '欢迎交流我如何支持您的能源项目',
+                contactEmail: '邮箱',
+                contactPhone: '电话',
+                contactLinkedIn: '领英',
+                contactLocation: '所在地',
+                exp1Title: '国际微电网解决方案经理',
+                exp1Date: '2025年9月 - 至今',
+                exp1Location: '中国',
+                exp1Duration: '9个月',
+                exp1Bullet1: '负责面向商业、工业及新兴市场场景的国际微电网与分布式能源解决方案开发',
+                exp1Bullet2: '主导端到端方案设计，包括负荷评估、系统架构、设备选型（PCS、BESS、EMS）及财务可行性分析',
+                exp1Bullet3: '通过协调工程、采购及本地合作伙伴，推动亚洲、非洲、欧盟与中东项目落地执行',
+                exp1Bullet4: '通过定制化微电网设计支持业务拓展，解决电网不稳定、削峰及可再生能源渗透等问题',
+                exp1Bullet5: '将复杂能源系统需求整理为清晰、可执行的方案，便于非技术决策者理解',
+                exp1Bullet6: '通过识别市场机会、法规约束与本地化需求，支持全球业务拓展战略',
+                exp2Title: '产品经理',
+                exp2Date: '2024年4月 - 2025年9月',
+                exp2Location: '中国深圳',
+                exp2Duration: '1年6个月',
+                exp2Bullet1: '在领先的可持续能源企业负责创新电池储能系统（BESS）的产品全生命周期管理',
+                exp2Bullet2: '与工程、销售和市场团队跨部门协作，使产品方向与客户需求保持一致',
+                exp2Bullet3: '专注于功率变换系统（PCS）、电池管理系统（BMS）、BESS认证及通信协议',
+                exp2Bullet4: '通过技术方案书为重点客户提供定制化解决方案',
+                exp2Bullet5: '打通技术相关方沟通，确保对项目需求的统一理解',
+                exp3Title: '售前与售后工程师',
+                exp3Date: '2023年8月 - 2024年4月',
+                exp3Location: '中国深圳',
+                exp3Duration: '9个月',
+                exp3Bullet1: '为销售团队与客户提供新能源汽车充电、储能及光储充一体化方案的技术指导',
+                exp3Bullet2: '编写技术文档与缺陷手册，提升产品理解与故障排查效率',
+                exp3Bullet3: '开发经销商培训方案，提升CEGN解决方案实施与支持能力',
+                exp3Bullet4: '收集客户反馈，识别产品改进机会并优化用户体验',
+                exp3Bullet5: '通过技术洞察支持业务拓展与销售推进',
+                exp4Title: '技术支持工程师',
+                exp4Date: '2021年8月 - 2023年7月',
+                exp4Location: '中国深圳',
+                exp4Duration: '2年',
+                exp4Bullet1: '为国际客户提供诊断扫描工具、TPMS、ADAS标定及OBDII产品技术支持',
+                exp4Bullet2: '解决复杂产品问题，提升全球市场客户满意度',
+                exp4Bullet3: '编写技术文档与缺陷手册，支持全球产品理解与应用',
+                exp4Bullet4: '培训合作伙伴与客户高效安装、实施并支持Autel产品',
+                exp4Bullet5: '协同销售团队开展技术讲解、产品演示与客户培训',
+                exp4Bullet6: '收集客户反馈，持续改进产品性能与用户体验',
+                exp5Title: '技术支持工程师',
+                exp5Date: '2020年12月 - 2021年8月',
+                exp5Location: '中国深圳',
+                exp5Duration: '9个月',
+                exp5Bullet1: '主导Simply Reliable B2B平台在骨传导系列智能产品方向的业务拓展',
+                exp5Bullet2: '确保消费者咨询与问题得到及时、专业且友好的响应',
+                exp5Bullet3: '支持数据监控工具，并协助客户解决技术问题',
+                exp5Bullet4: '开展产品演示并指导客户高效使用产品',
+                exp5Bullet5: '作为产品研发与技术支持之间的联络桥梁，提升协同沟通质量',
+                exp5Bullet6: '编制培训材料与技术报告，支持客户快速上手',
+                exp6Title: '技术售前经理',
+                exp6Date: '2019年11月 - 2020年12月',
+                exp6Location: '中国北京',
+                exp6Duration: '1年2个月',
+                exp6Bullet1: '开展产品演示，并围绕核心产品为客户提供技术培训',
+                exp6Bullet2: '协调产品研发与技术支持，保障质量与客户满意度',
+                exp6Bullet3: '编写外语说明手册与技术文档',
+                exp6Bullet4: '跟踪产品使用情况，提升客户使用效率与满意度',
+                skillTitle1: '能源系统',
+                skill1Tag1: '光伏系统',
+                skill1Tag2: '电池储能系统',
+                skill1Tag3: '电动车充电',
+                skill1Tag4: '微电网',
+                skill1Tag5: 'PCS',
+                skill1Tag6: 'EMS',
+                skill1Tag7: 'BMS',
+                skillTitle2: '商务与销售',
+                skill2Tag1: '线索开发',
+                skill2Tag2: '技术售前',
+                skill2Tag3: '方案设计',
+                skill2Tag4: '财务分析',
+                skill2Tag5: '资本/运营支出',
+                skill2Tag6: 'IRR分析',
+                skillTitle3: '工具与平台',
+                skill3Tag1: 'Salesforce',
+                skill3Tag2: 'Jira Service Desk',
+                skill3Tag3: '技术文档编写',
+                skill3Tag4: '产品管理',
+                skillTitle4: '市场专长',
+                skill4Tag1: '亚洲',
+                skill4Tag2: '非洲',
+                skill4Tag3: '中东',
+                skill4Tag4: '欧盟',
+                skill4Tag5: '新兴市场',
+                skill4Tag6: '电网不稳定解决方案',
+                skillTitle5: '软技能',
+                skill5Tag1: '跨部门协同',
+                skill5Tag2: '利益相关方管理',
+                skill5Tag3: '客户培训',
+                skill5Tag4: '技术沟通',
+                skill5Tag5: '团队效率提升',
+                skillTitle6: '汽车技术',
+                skill6Tag1: '诊断工具',
+                skill6Tag2: 'TPMS',
+                skill6Tag3: 'ADAS标定',
+                skill6Tag4: 'OBDII',
+                skill6Tag5: '技术支持',
+                langUrdu: '乌尔都语',
+                langHindi: '印地语',
+                langEnglish: '英语',
+                langChinese: '中文',
+                langPunjabi: '旁遮普语',
+                langLevelNative: '母语或双语',
+                langLevelProfessional: '专业工作熟练',
+                langLevelElementary: '基础',
+                cert1: '提升团队生产力',
+                cert2: '现代管理沟通技巧',
+                cert3: '与挑战型客户建立积极对话',
+                cert4: '作为管理者优化团队人效',
+                cert5: '打造积极健康的工作环境',
+                footerRights: '© 2026 Abdul Rehman Khan. 保留所有权利。',
+                footerTagline: '本作品集基于在光伏、储能、电动车系统及分布式能源解决方案方面的专业经验设计。'
+            }
+        };
+
+        function setLanguage(lang) {
+            const locale = translations[lang] ? lang : 'en';
+            document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en';
+            document.title = translations[locale].pageTitle;
+
+            document.querySelectorAll('[data-i18n]').forEach((el) => {
+                const key = el.getAttribute('data-i18n');
+                const text = translations[locale][key];
+                if (text) {
+                    el.textContent = text;
+                }
+            });
+
+            const enBtn = document.getElementById('lang-en');
+            const zhBtn = document.getElementById('lang-zh');
+            enBtn.classList.toggle('active', locale === 'en');
+            zhBtn.classList.toggle('active', locale === 'zh');
+
+            localStorage.setItem('preferred-language', locale);
+        }
+
+        document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+        document.getElementById('lang-zh').addEventListener('click', () => setLanguage('zh'));
+
+        setLanguage(localStorage.getItem('preferred-language') || 'en');
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(15, 23, 42, 0.95)';
+            } else {
+                nav.style.background = 'rgba(15, 23, 42, 0.85)';
+            }
+        });
+    </script>
+</body>
+</html>
