@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abdul Rehman Khan — Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f59e0b'/%3E%3Cpath d='M20 46L30 18h4l10 28h-5l-2.2-6.6h-9.6L25 46h-5zm8.5-11h6.1L31.5 25l-3 10z' fill='%230f172a'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -35,6 +36,54 @@
             overflow-x: hidden;
         }
 
+        body.theme-light {
+            --primary: #f4f6fb;
+            --secondary: #ffffff;
+            --accent: #0ea5a4;
+            --accent-light: #14b8a6;
+            --text: #0f172a;
+            --text-muted: #475569;
+            --border: #cbd5e1;
+            --card: #ffffff;
+            --success: #059669;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            opacity: 0.18;
+            background-image:
+                repeating-linear-gradient(
+                    45deg,
+                    rgba(255, 255, 255, 0.05) 0 2px,
+                    transparent 2px 12px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    rgba(255, 255, 255, 0.04) 0 2px,
+                    transparent 2px 12px
+                );
+            background-size: 18px 18px;
+        }
+
+        body.theme-light::before {
+            opacity: 0.12;
+            background-image:
+                repeating-linear-gradient(
+                    45deg,
+                    rgba(2, 6, 23, 0.035) 0 2px,
+                    transparent 2px 12px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    rgba(2, 6, 23, 0.03) 0 2px,
+                    transparent 2px 12px
+                );
+        }
+
         body.lang-zh {
             font-family: 'Noto Sans SC', 'Inter', sans-serif;
         }
@@ -52,6 +101,13 @@
                 radial-gradient(ellipse at 80% 80%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
                 radial-gradient(ellipse at 50% 50%, rgba(30, 41, 59, 0.5) 0%, transparent 70%);
         }
+
+            body.theme-light .bg-animation {
+                background:
+                radial-gradient(ellipse at 20% 20%, rgba(20, 184, 166, 0.14) 0%, transparent 52%),
+                radial-gradient(ellipse at 80% 80%, rgba(14, 165, 164, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(148, 163, 184, 0.22) 0%, transparent 70%);
+            }
 
         /* Navigation */
         nav {
@@ -79,6 +135,13 @@
             font-size: 1.25rem;
             color: var(--accent);
             letter-spacing: -0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 1rem;
         }
 
         .nav-links {
@@ -114,6 +177,30 @@
             color: var(--primary);
             background: var(--accent);
             border-color: var(--accent);
+        }
+
+        .theme-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .theme-btn:hover {
+            color: var(--text);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .theme-btn i {
+            font-size: 0.9rem;
         }
 
         .nav-links a {
@@ -744,13 +831,14 @@
 
         .footer-credit a {
             color: var(--accent-light);
-            text-decoration: none;
+            text-decoration: underline;
+            text-underline-offset: 2px;
             font-weight: 700;
         }
 
         .footer-credit a:hover {
             color: var(--accent);
-            text-decoration: underline;
+            opacity: 0.9;
         }
 
         /* Scroll animations */
@@ -862,7 +950,7 @@
 
     <nav>
         <div class="nav-container">
-            <div class="logo">ARK</div>
+            <div class="logo"><i class="fas fa-bolt" aria-hidden="true"></i>ARK</div>
             <ul class="nav-links">
                 <li><a href="#about" data-i18n="navAbout">About</a></li>
                 <li><a href="#experience" data-i18n="navExperience">Experience</a></li>
@@ -871,6 +959,9 @@
                 <li><a href="#contact" data-i18n="navContact">Contact</a></li>
             </ul>
             <div class="lang-switcher" aria-label="Language switcher">
+                <button id="theme-toggle" class="theme-btn" type="button" aria-label="Switch theme" title="Switch theme">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
                 <button id="lang-en" class="lang-btn active" type="button">EN</button>
                 <button id="lang-zh" class="lang-btn" type="button">中文</button>
             </div>
@@ -1328,7 +1419,7 @@
     <footer>
         <p data-i18n="footerRights">© 2026 Abdul Rehman Khan. All rights reserved.</p>
         <p class="footer-credit">
-            <span data-i18n="footerBuiltWithBefore">Built with love ❤️ by </span>
+            <span data-i18n="footerBuiltWithBefore">Built with ❤️ </span>
             <a href="https://www.ethioweb.net/" target="_blank" rel="noopener noreferrer">Ethioweb</a>
             <span data-i18n="footerBuiltWithAfter"></span>
         </p>
@@ -1338,6 +1429,9 @@
         const translations = {
             en: {
                 pageTitle: 'Abdul Rehman Khan — Portfolio',
+                themeToggle: 'Theme',
+                themeLight: 'Light',
+                themeDark: 'Dark',
                 navAbout: 'About',
                 navExperience: 'Experience',
                 navSkills: 'Skills',
@@ -1492,11 +1586,14 @@
                 cert4: 'Optimizing Human Performance on Your Team as a Manager',
                 cert5: 'Creating a Positive and Healthy Work Environment',
                 footerRights: '© 2026 Abdul Rehman Khan. All rights reserved.',
-                footerBuiltWithBefore: 'Built with love ❤️ by ',
+                footerBuiltWithBefore: 'Built with ❤️ @ ',
                 footerBuiltWithAfter: ''
             },
             zh: {
                 pageTitle: 'Abdul Rehman Khan - 个人作品集',
+                themeToggle: '主题',
+                themeLight: '浅色',
+                themeDark: '深色',
                 navAbout: '关于',
                 navExperience: '经历',
                 navSkills: '技能',
@@ -1651,8 +1748,8 @@
                 cert4: '作为管理者优化团队人效',
                 cert5: '打造积极健康的工作环境',
                 footerRights: '© 2026 Abdul Rehman Khan. 保留所有权利。',
-                footerBuiltWithBefore: '由 ',
-                footerBuiltWithAfter: ' 用爱 ❤️ 打造'
+                footerBuiltWithBefore: 'Built with ❤️ @ ',
+                footerBuiltWithAfter: ''
             }
         };
 
@@ -1660,7 +1757,31 @@
             el,
             key: el.getAttribute('data-i18n')
         }));
+        const themeToggleBtn = document.getElementById('theme-toggle');
         let currentLanguage = null;
+        let currentTheme = null;
+
+        function updateThemeToggleLabel() {
+            const locale = currentLanguage || 'en';
+            const dict = translations[locale] || translations.en;
+            const modeLabel = currentTheme === 'light' ? dict.themeLight : dict.themeDark;
+            const title = dict.themeToggle + ': ' + modeLabel;
+            themeToggleBtn.setAttribute('aria-label', title);
+            themeToggleBtn.setAttribute('title', title);
+        }
+
+        function applyTheme(theme) {
+            const mode = theme === 'light' ? 'light' : 'dark';
+            currentTheme = mode;
+            document.body.classList.toggle('theme-light', mode === 'light');
+
+            const icon = themeToggleBtn.querySelector('i');
+            icon.className = mode === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+
+            localStorage.setItem('preferred-theme', mode);
+            updateThemeToggleLabel();
+            updateNavbarBackground();
+        }
 
         function setLanguage(lang) {
             const locale = translations[lang] ? lang : 'en';
@@ -1686,10 +1807,14 @@
 
             localStorage.setItem('preferred-language', locale);
             currentLanguage = locale;
+            updateThemeToggleLabel();
         }
 
         document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
         document.getElementById('lang-zh').addEventListener('click', () => setLanguage('zh'));
+        themeToggleBtn.addEventListener('click', () => {
+            applyTheme(currentTheme === 'light' ? 'dark' : 'light');
+        });
 
         if (document.fonts && document.fonts.load) {
             document.fonts.load("400 1em 'Noto Sans SC'");
@@ -1697,6 +1822,7 @@
         }
 
         setLanguage(localStorage.getItem('preferred-language') || 'en');
+        applyTheme(localStorage.getItem('preferred-theme') || 'dark');
 
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1724,14 +1850,19 @@
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+        function updateNavbarBackground() {
+            const nav = document.querySelector('nav');
+            const isLight = document.body.classList.contains('theme-light');
+            if (window.scrollY > 50) {
+                nav.style.background = isLight ? 'rgba(248, 250, 252, 0.96)' : 'rgba(15, 23, 42, 0.95)';
+            } else {
+                nav.style.background = isLight ? 'rgba(248, 250, 252, 0.82)' : 'rgba(15, 23, 42, 0.85)';
+            }
+        }
+
         // Navbar background on scroll
         window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(15, 23, 42, 0.95)';
-            } else {
-                nav.style.background = 'rgba(15, 23, 42, 0.85)';
-            }
+            updateNavbarBackground();
         });
     </script>
 </body>
