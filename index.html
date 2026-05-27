@@ -302,6 +302,31 @@
             margin-bottom: 1.5rem;
         }
 
+        .countries-title {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .countries-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .country-chip {
+            font-size: 0.75rem;
+            padding: 0.3rem 0.55rem;
+            border-radius: 999px;
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            color: var(--accent-light);
+            background: rgba(245, 158, 11, 0.08);
+            line-height: 1.2;
+        }
+
         .profile-stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -659,6 +684,12 @@
             text-decoration: none;
             color: var(--text);
             transition: all 0.3s;
+            min-width: 0;
+        }
+
+        .contact-linkedin {
+            grid-column: span 2;
+            padding: 1.35rem 1.5rem;
         }
 
         .contact-card:hover {
@@ -686,9 +717,15 @@
             margin-bottom: 0.2rem;
         }
 
+        .contact-info {
+            min-width: 0;
+        }
+
         .contact-info p {
-            font-size: 0.95rem;
+            font-size: clamp(0.7rem, 2.8vw, 0.92rem);
             font-weight: 500;
+            white-space: nowrap;
+            line-height: 1.3;
         }
 
         /* Footer */
@@ -774,6 +811,28 @@
                 font-size: 2rem;
             }
 
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-card {
+                padding: 0.85rem 0.95rem;
+                gap: 0.6rem;
+            }
+
+            .contact-linkedin {
+                grid-column: span 1;
+                padding: 1rem;
+            }
+
+            .contact-icon {
+                display: none;
+            }
+
+            .contact-info h4 {
+                font-size: 0.78rem;
+            }
+
             .profile-avatar {
                 width: 140px;
                 height: 140px;
@@ -850,6 +909,18 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
                         <i class="fas fa-map-marker-alt" style="color: var(--accent);"></i> <span data-i18n="profileLocation">China</span>
                     </p>
+                    <p class="countries-title" data-i18n="countriesTitle">Countries Visited</p>
+                    <div class="countries-list">
+                        <span class="country-chip" data-i18n="countryKenya">Kenya</span>
+                        <span class="country-chip" data-i18n="countryEthiopia">Ethiopia</span>
+                        <span class="country-chip" data-i18n="countryMalaysia">Malaysia</span>
+                        <span class="country-chip" data-i18n="countrySomalia">Somalia</span>
+                        <span class="country-chip" data-i18n="countryIndonesia">Indonesia</span>
+                        <span class="country-chip" data-i18n="countryMaldives">Maldives</span>
+                        <span class="country-chip" data-i18n="countryPhilippines">Philippines</span>
+                        <span class="country-chip" data-i18n="countryTurkey">Turkey</span>
+                        <span class="country-chip" data-i18n="countryThailand">Thailand</span>
+                    </div>
                     <div class="profile-stats">
                         <div class="stat">
                             <div class="stat-value">6+</div>
@@ -1237,11 +1308,11 @@
                     <p>+86 130 4105 7233</p>
                 </div>
             </a>
-            <a href="https://www.linkedin.com/in/abdulrehman4238" target="_blank" class="contact-card fade-in">
+            <a href="https://www.linkedin.com/in/abdulrehman4238" target="_blank" class="contact-card contact-linkedin fade-in">
                 <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
                 <div class="contact-info">
                     <h4 data-i18n="contactLinkedIn">LinkedIn</h4>
-                    <p>linkedin.com/in/abdulrehman4238</p>
+                    <p>in/abdulrehman4238</p>
                 </div>
             </a>
             <div class="contact-card fade-in">
@@ -1279,6 +1350,16 @@
                 btnExperience: 'View Experience',
                 profileRole: 'PV · ESS · EV Systems',
                 profileLocation: 'China',
+                countriesTitle: 'Countries Visited',
+                countryKenya: 'Kenya',
+                countryEthiopia: 'Ethiopia',
+                countryMalaysia: 'Malaysia',
+                countrySomalia: 'Somalia',
+                countryIndonesia: 'Indonesia',
+                countryMaldives: 'Maldives',
+                countryPhilippines: 'Philippines',
+                countryTurkey: 'Turkey',
+                countryThailand: 'Thailand',
                 statYears: 'Years Exp.',
                 statCompanies: 'Companies',
                 statLanguages: 'Languages',
@@ -1428,6 +1509,16 @@
                 btnExperience: '查看经历',
                 profileRole: '光伏 · 储能 · 电动车系统',
                 profileLocation: '中国',
+                countriesTitle: '到访国家',
+                countryKenya: '肯尼亚',
+                countryEthiopia: '埃塞俄比亚',
+                countryMalaysia: '马来西亚',
+                countrySomalia: '索马里',
+                countryIndonesia: '印度尼西亚',
+                countryMaldives: '马尔代夫',
+                countryPhilippines: '菲律宾',
+                countryTurkey: '土耳其',
+                countryThailand: '泰国',
                 statYears: '年经验',
                 statCompanies: '任职公司',
                 statLanguages: '语言',
